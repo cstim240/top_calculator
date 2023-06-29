@@ -20,7 +20,8 @@ body {
     margin: 1%;
     background-color: #faf6ed;
     padding: 3px;
-    width: 30%;
+    width: 35%;
+
 }
 
 p {
@@ -33,12 +34,17 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2%;
+    padding: 1% 2% 2% 2%; 
     margin: 20vh 30vh 68vh 30vh; /* top | right | bottom | left*/
     flex: 1 1 0;
     border: 5px double black ; /*size type color*/
     border-radius: 10%;
-    
+}
+
+.calcTitle {
+    margin-left: auto;
+    margin-bottom: 5%;
+    color: darkgrey;
 }
 
 .footer {
@@ -46,5 +52,7 @@ p {
     display: flex;
     justify-content: center;
     padding: 2px;
-    width: 30%;
+    width: 40%;
+    font-size: xx-small;
+    color: darkgrey;
 }
