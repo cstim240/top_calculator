@@ -45,22 +45,22 @@ p {
 .calcTitle {
     margin-left: auto;
     margin-bottom: 5%;
-    margin-right: 5px;
+    margin-right: 10px;
     margin-top: 2px;
     color: darkgrey;
+    font-size: larger;
 }
 
 .main_display {
     background-color: #95fc97;
-    color: #768576;
-    font-size: xx-large;
+    color:#3a4a38;
+    font-size: 90px;
     font-weight: bold;
     border: 1px inset grey;
     border-radius: 5px;
     padding: 1%;
     margin-bottom: 10%;
     width: 420px;
-    height: 80%;
 }
 
 .buttons {
@@ -68,6 +68,7 @@ p {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 10px;
 }
 
 button {
