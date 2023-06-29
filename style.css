@@ -19,7 +19,7 @@ body {
     color: #9c8857;
     margin: 1%;
     background-color: #faf6ed;
-    padding: 2px;
+    padding: 3px;
     width: 30%;
 }
 
@@ -36,6 +36,8 @@ p {
     padding: 2%;
     margin: 20vh 30vh 68vh 30vh; /* top | right | bottom | left*/
     flex: 1 1 0;
+    border: 5px double black ; /*size type color*/
+    border-radius: 10%;
     
 }
 
