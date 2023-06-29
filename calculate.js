@@ -111,6 +111,7 @@ function clearValues(){
 //DEL func to be called, accounts for decimal at the end 
 function undo(){
     let newDisplay = '';
+
     if (onDisplay.length > 0){
         let lastDigit = onDisplay.charAt(onDisplay.length - 1);
         if (lastDigit == '.'){ //resets decimalPresence var if the last digit is a decimal
@@ -118,8 +119,16 @@ function undo(){
         }
         newDisplay = onDisplay.substring(0, onDisplay.length - 1);
     }
+
     onDisplay = newDisplay;
-    displayValue(onDisplay);
+
+    if (inputCounter){
+        num1 = onDisplay;
+        displayValue(num1);
+    } else {
+        num2 = onDisplay;
+        displayValue(num2);
+    }
 }
 
 function operate(operator, num1, num2){
@@ -149,11 +158,18 @@ function displayValue(value){
 //Keyboard support - START ------------------------------------------------------------------------------------------------------------------------------------------------------
 document.addEventListener('keydown', function(event) {
     const key = event.key;
+    const activeElement = document.activeElement; //property which returns the currently focused element within the document. It represents the element that would receive keyboard input or be the target of any keyboard events
+    // in this context, we focus on the keydown event
+
+    if (activeElement.tagName === 'INPUT' && key === 'Backspace'){ // INPUT checks if the active element is an input field. If it is and the backspace key is pressed
+        //the code will skip executing the rest of the event handler
+        return; //skip executing the rest of the code if backspace is being handled by an input field
+    } //this chekc helps avoid interfering with the default behaviour of the backspace key within input fields, ensuring the keydown event is NOT handled twice
 
     if (key >= '0' && key <= '9'){
         const btnValue = key;
         handleButtonPresses(btnValue); //need to implement
-    } else if (((key === '+' || key === '-' || key === '*' || key === '/') && !isNaN(num1)) && !operatorPresence){
+    } else if (isOperatorKey(key) && !isNaN(num1) && !operatorPresence){
         operatorPresence = true;
         const btnValue = getOperatorValue(key);
         handleOperatorPresses(btnValue);
@@ -163,6 +179,7 @@ document.addEventListener('keydown', function(event) {
     } else if (key === 'Enter'){
         if (isNaN(num1) || isNaN(num2)){
             document.querySelector(".main_display").value = 'Enter at least TWO #s!';
+            setTimeout(() => {clearValues();}, 1000);  //shows the error message and delays implementing the clearValues() functions by 1 second, 
         } else {
             num1 = operate(operator, num1, num2);
             onDisplay = num1;
@@ -176,9 +193,13 @@ document.addEventListener('keydown', function(event) {
         }
     } else {
         onDisplay = '';
-        displayValue(onDisplay);
+        //displayValue(onDisplay);
     }
 });
+
+function isOperatorKey(key){
+    return key === '+' || key === '-' || key === '*' || key === '/';
+}
 
 function handleButtonPresses(btnValue){
     onDisplay += btnValue; //we add the btnValue to onDisplay, in case we want a number with more than 1 digit
