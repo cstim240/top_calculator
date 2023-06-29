@@ -9,7 +9,7 @@ let onDisplay = ''; //we keep track of our total and current number with this
 let decimalPresence = false;
 let operatorPresence = false;
 
-const btn = document.querySelectorAll(".numbers .digits");
+const btn = document.querySelectorAll(".digits");
 btn.forEach(function(button){ //adds an eventlistener to each button belonging under the numbers and digits class
     button.addEventListener('click', function(){
         let btnValue = this.value; //refers to the value of the button ~ from html 

@@ -8,51 +8,64 @@
     </head>
 
     <body>
-        <div>
+        <div class="header">
+            <h1>Calculator!</h1>
+        </div>
+
+        <div class="notes">
             <p>Note: This calculator can only evaluate a single pair of numbers at a time!</p>
-            <p>Don't try to do more than one opeation - ie. 1 + 2 * 3 will not result in 7!</p>
+            <p>Don't try to do more than one operation - ie. 1 + 2 * 3 will not result in 7!</p>
             <p>Try something this instead: 1 + 2 = 3, then 3 * 3 = 9!</p>
         </div>
-        <div class="display">
-            <input class="main_display" />
+
+        <div class="calculator">
+            <div>
+                <p>TI-M-82</p>
+            </div>
+
+            <div class="display">
+                <input class="main_display"/>
+            </div>
+
+            <div class="buttons">
+                <div class="first_row">
+                    <button class="clear">AC</button>
+                    <button class="backspace">DEL</button>
+                    <button class="operation" value="divide">/</button>   
+                </div>
+
+                <div class="second_row">
+                    <button class="digits" value="7">7</button>
+                    <button class="digits" value="8">8</button>
+                    <button class="digits" value="9">9</button>
+                    <button class="operation" value="multiply">*</button>
+                </div>
+                
+                <div class="third_row">
+                    <button class="digits" value="4">4</button>
+                    <button class="digits" value="5">5</button>
+                    <button class="digits" value="6">6</button>
+                    <button class="operation" value="subtract">-</button>
+                </div>
+
+                <div class="fourth_row">
+                    <button class="digits" value="1">1</button>
+                    <button class="digits" value="2">2</button>
+                    <button class="digits" value="3">3</button>
+                    <button class="operation" value="add">+</button>
+                </div>
+
+                <div class="first_row">
+                    <button class="digits" value="0">0</button>
+                    <button class="decimal">.</button>
+                    <button class="compute">=</button>
+                </div>
+
+            </div>
         </div>
 
-        <div class="buttons">
-            <div class="commands">
-                <button class="operation" value="add">Add</button>
-                <button class="operation" value="subtract">Subtract</button>
-                <button class="operation" value="multiply">Multiply</button>
-                <button class="operation" value="divide">Divide</button>
-            </div>
-
-            <div>
-                <button class="compute">=</button>
-            </div>
-
-            <div>
-                <button class="clear">Clear</button>
-            </div>
-
-            <div class="numbers">
-                <button class="digits" value="0">0</button>
-                <button class="digits" value="1">1</button>
-                <button class="digits" value="2">2</button>
-                <button class="digits" value="3">3</button>
-                <button class="digits" value="4">4</button>
-                <button class="digits" value="5">5</button>
-                <button class="digits" value="6">6</button>
-                <button class="digits" value="7">7</button>
-                <button class="digits" value="8">8</button>
-                <button class="digits" value="9">9</button>
-            </div>
-
-            <div>
-                <button class="decimal">.</button>
-            </div>
-
-            <div>
-                <button class="backspace">Backspace</button>
-            </div>
+        <div class="footer">
+            <p>Footer</p>
         </div>
 
     </body>
