@@ -1,10 +1,24 @@
 body {
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: stretch;
+    align-items: center;
+    background-color: blanchedalmond;
 }
 
 .header {
-    align-self: center;
+    background-color: antiquewhite;
+}
 
+.notes {
+    background-color: antiquewhite;
+}
+
+.calculator {
+    background-color: antiquewhite;
+}
+
+.footer {
+    background-color: antiquewhite;
 }
