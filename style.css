@@ -47,6 +47,16 @@ p {
     color: darkgrey;
 }
 
+.main_display {
+    background-color: #95fc97;
+    color: #768576;
+    font-weight: bold;
+    border: 1px inset grey;
+    border-radius: 5px;
+    padding: 2%;
+    margin-bottom: 10%;
+}
+
 .footer {
     background-color: #faf6ed;
     display: flex;
