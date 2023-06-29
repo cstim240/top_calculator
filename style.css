@@ -82,12 +82,17 @@ button {
 }
 
 .compute {
-    width: 205px;
+    width: 208px;
+    color: yellow;
 }
 
 .clear, .backspace{
     width: 155px;
     color: #eb6579;
+}
+
+.operation{
+    color: orange;
 }
 
 

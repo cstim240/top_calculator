@@ -60,7 +60,7 @@ compute.addEventListener('click', function(){
     operatorPresence = true;
     if (operatorPresence){
         if (isNaN(num1) || isNaN(num2)){
-            document.querySelector(".main_display").value = 'Enter at least TWO #s!';
+            document.querySelector(".main_display").value = 'ERROR';
             setTimeout(() => {clearValues();}, 1000);  //shows the error message and delays implementing the clearValues() functions by 1 second, 
         } else {
             displayValue(operate(operator, num1, num2));
@@ -92,7 +92,8 @@ function multiply(num1, num2){
 
 function divide(num1, num2){
     if (num2 == 0){
-        document.querySelector(".main_display").value = 'div by 0 is NOT allowed!';
+        document.querySelector(".main_display").value = 'ERROR';
+        setTimeout(() => {clearValues();}, 1000);
     } else {
         return num1 / num2;
     }
@@ -144,6 +145,10 @@ function operate(operator, num1, num2){
             return multiply(num1, num2);
             break;
         case 'divide':
+            if (num2 == 0){
+                document.querySelector(".main_display").value = 'ERROR';
+                setTimeout(() => {clearValues();}, 1000);
+            }
             return divide(num1, num2);
             break;
         default:
@@ -178,8 +183,8 @@ document.addEventListener('keydown', function(event) {
     } else if (key === 'Backspace' && !isNaN(num1)) {
         undo();
     } else if (key === 'Enter'){
-        if (isNaN(num1) || isNaN(num2)){
-            document.querySelector(".main_display").value = 'Enter at least TWO #s!';
+        if ((isNaN(num1) || isNaN(num2)) || num2 == 0){
+            document.querySelector(".main_display").value = 'ERROR';
             setTimeout(() => {clearValues();}, 1000);  //shows the error message and delays implementing the clearValues() functions by 1 second, 
         } else {
             num1 = operate(operator, num1, num2);
