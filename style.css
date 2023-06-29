@@ -29,7 +29,7 @@ p {
 }
 
 .calculator {
-    background-color: whitesmoke;
+    background-color: #656965;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,6 +55,20 @@ p {
     border-radius: 5px;
     padding: 2%;
     margin-bottom: 10%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+button {
+    background-color: #333633;
+    color: darkgrey;
+    border-radius: 5px;
 }
 
 .footer {

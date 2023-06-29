@@ -61,6 +61,7 @@ compute.addEventListener('click', function(){
     if (operatorPresence){
         if (isNaN(num1) || isNaN(num2)){
             document.querySelector(".main_display").value = 'Enter at least TWO #s!';
+            setTimeout(() => {clearValues();}, 1000);  //shows the error message and delays implementing the clearValues() functions by 1 second, 
         } else {
             displayValue(operate(operator, num1, num2));
             num1 = operate(operator, num1, num2);
