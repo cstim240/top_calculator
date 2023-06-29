@@ -1,27 +1,98 @@
 'use strict';
 //this calculator does not evaluate more than a single pair of numbers at a time.
+//notes: lots of repeat code from handling click and keyboard events separately.
 let num1 = NaN;
 let num2 = NaN;
 let inputCounter = true; //allows for proper placement of our first two inputs, subsequent operations and operands will be placed in num2
 let operator = '';
 let onDisplay = ''; //we keep track of our total and current number with this
 let decimalPresence = false;
+let operatorPresence = false;
 
 const btn = document.querySelectorAll(".numbers .digits");
 btn.forEach(function(button){ //adds an eventlistener to each button belonging under the numbers and digits class
     button.addEventListener('click', function(){
         let btnValue = this.value; //refers to the value of the button ~ from html 
         onDisplay += btnValue; //we add the btnValue to onDisplay, in case we want a number with more than 1 digit
-
         if (inputCounter){ 
             num1 = parseFloat(onDisplay);
         } else {
             num2 = parseFloat(onDisplay);
         }
-        
         displayValue(onDisplay);
     });
 });
+
+//Keyboard support - START
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+
+    if (key >= '0' && key <= '9'){
+        const btnValue = key;
+        handleButtonPresses(btnValue); //need to implement
+    } else if (((key === '+' || key === '-' || key === '*' || key === '/') && !isNaN(num1)) && !operatorPresence){
+        operatorPresence = true;
+        const btnValue = getOperatorValue(key);
+        handleOperatorPresses(btnValue);
+        onDisplay = '';
+    } else if (key === 'Backspace' && !isNaN(num1)) {
+        undo();
+    } else if (key === 'Enter'){
+        if (isNaN(num1) || isNaN(num2)){
+            document.querySelector(".main_display").value = 'Enter at least TWO #s!';
+        } else {
+            num1 = operate(operator, num1, num2);
+            onDisplay = num1;
+            displayValue(onDisplay);
+            operatorPresence = false;
+        }
+    } else if (key === '.' && !isNaN(num1)){
+        if (!decimalPresence){
+            onDisplay += '.';
+            decimalPresence = true;
+        }
+    } else {
+        onDisplay = '';
+        displayValue(onDisplay);
+    }
+});
+
+function handleButtonPresses(btnValue){
+    onDisplay += btnValue; //we add the btnValue to onDisplay, in case we want a number with more than 1 digit
+    if (inputCounter){ 
+        num1 = parseFloat(onDisplay);
+    } else {
+        num2 = parseFloat(onDisplay);
+    }
+}
+
+function getOperatorValue(key){
+    switch (key) {
+        case '+':
+            return 'add';
+            break;
+        case '-':
+            return 'subtract';
+            break;
+        case '*':
+            return 'multiply';
+            break;
+        case '/':
+            return 'divide';
+            break;
+        default:
+            break;
+    }
+}
+
+function handleOperatorPresses(btnValue) {
+    onDisplay = '';
+    operator = btnValue;
+    inputCounter = false;
+    decimalPresence = false;
+}
+
+//keyboard support - END
 
 const decimal = document.querySelector(".decimal");
 decimal.addEventListener('click', () => {
@@ -51,13 +122,17 @@ operators.forEach(function(button) {
 
 const compute = document.querySelector(".compute");
 compute.addEventListener('click', function(){
-    if (isNaN(num1) || isNaN(num2)){
-        document.querySelector(".main_display").value = 'Enter at least TWO #s!';
-    } else {
-        displayValue(operate(operator, num1, num2));
-        num1 = operate(operator, num1, num2);
-        onDisplay = num1;
+    operatorPresence = true;
+    if (operatorPresence){
+        if (isNaN(num1) || isNaN(num2)){
+            document.querySelector(".main_display").value = 'Enter at least TWO #s!';
+        } else {
+            displayValue(operate(operator, num1, num2));
+            num1 = operate(operator, num1, num2);
+            onDisplay = num1;
+        }
     }
+    
 });
 
 const clear = document.querySelector(".clear");
@@ -92,6 +167,7 @@ function clearValues(){
     onDisplay = '';
     inputCounter = true;
     decimalPresence = false;
+    operatorPresence = false;
     document.querySelector(".main_display").value = '';
 }
 
@@ -126,7 +202,6 @@ function operate(operator, num1, num2){
             break;
     }
 }
-
 
 function displayValue(value){
     let mainView = document.querySelector(".display .main_display");
